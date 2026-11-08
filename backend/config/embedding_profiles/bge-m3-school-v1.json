@@ -1,0 +1,18 @@
+{
+  "name": "bge-m3-school-v1",
+  "provider": "openai-compatible",
+  "base_url": "https://myai.bupt.edu.cn/llm-gw/v1",
+  "model": "bge-m3",
+  "dimension": 1024,
+  "max_input_tokens": 8192,
+  "batch_limit": 32,
+  "send_dimensions": false,
+  "normalize": false,
+  "query_prefix": "",
+  "document_prefix": "",
+  "tokenizer_encoding": "hf-json:21106b6d7dab2952c1d496fb21d5dc9db75c28ed361a05f5020bbba27810dd08",
+  "api_key_env": "SCHOOL_EMBEDDING_API_KEY",
+  "space_revision": "school-bge-m3-observed-20261006-v1",
+  "identity_version": 2,
+  "legacy_identity_json": null
+}

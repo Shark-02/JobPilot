@@ -1,0 +1,15 @@
+import { useEffect, useMemo, useState } from "react";
+import { api } from "../api/client";
+
+type RecordRow = Record<string, unknown>;
+const format = (value: unknown) => JSON.stringify(value, null, 2);
+
+export function DebugInspector() {
+  const [runs, setRuns] = useState<RecordRow[]>([]); const [turn, setTurn] = useState<RecordRow | null>(null); const [items, setItems] = useState<RecordRow[]>([]); const [error, setError] = useState("");
+  const load = async () => { try { setRuns(await api.listObservabilityTurns()); setError(""); } catch (reason) { setError(reason instanceof Error ? reason.message : String(reason)); } };
+  useEffect(() => { void load(); }, []);
+  const open = async (id: string) => { try { const [detail, observations] = await Promise.all([api.getObservabilityTurn(id), api.observations(id)]); setTurn(detail); setItems(observations); } catch (reason) { setError(reason instanceof Error ? reason.message : String(reason)); } };
+  useEffect(() => { if (!turn || turn.status !== "RUNNING") return; const timer = window.setInterval(() => void open(String(turn.turn_id)), 1000); return () => window.clearInterval(timer); }, [turn?.turn_id, turn?.status]);
+  const summary = useMemo(() => turn && <div className="ob-summary">{["status", "started_at", "finished_at", "duration_ms", "model_calls", "tool_calls", "input_tokens", "output_tokens", "error_code"].map(key => <span key={key}><b>{key}</b> {String(turn[key] ?? "—")}</span>)}</div>, [turn]);
+  return <section className="inspector"><header><h1>Observability</h1><p>实时展示 Agent 的完整执行链路；不会重新调用模型或工具。</p></header>{error && <div className="error">{error}</div>}{!turn ? <div className="runs">{runs.map(run => <button className="run" key={String(run.turn_id)} onClick={() => void open(String(run.turn_id))}><b>{String(run.status)}</b><span>{String(run.user_message_preview)}</span><small>{String(run.model_calls)} model · {String(run.tool_calls)} tools · {String(run.duration_ms)}ms</small></button>)}{runs.length === 0 && <div className="empty">还没有已记录的 Agent Run。</div>}</div> : <><button onClick={() => { setTurn(null); setItems([]); void load(); }}>返回 Runs</button>{summary}<div className="trace-feed"><article className="trace-card user-trace"><div className="trace-label">USER</div><div>{String(turn.user_message ?? "")}</div></article>{items.map(item => <article className={`trace-card ${String(item.kind).toLowerCase()}`} key={String(item.id)}><div className="trace-heading"><b>{String(item.kind)}</b><span>{String(item.name ?? "")}</span><small>{String(item.status)} · {String(item.latency_ms ?? "运行中")}ms</small></div><details open><summary>输入</summary><pre>{format(item.input_payload)}</pre></details>{item.status !== "RUNNING" && <details open><summary>返回值</summary><pre>{format(item.output_payload)}</pre></details>}<details><summary>元数据与来源</summary><pre>{format({ metadata: item.metadata, source_refs: item.source_refs })}</pre></details></article>)}{items.length === 0 && turn.status !== "RUNNING" && <div className="trace-pending">该 turn 在 Agent 执行开始前已结束，因此没有可展示的模型或工具步骤。</div>}{turn.status === "RUNNING" && <div className="trace-pending">正在等待下一步执行…</div>}</div></>}</section>;
+}

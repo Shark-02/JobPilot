@@ -1,0 +1,2803 @@
+{
+  "created_utc": "2026-10-27T07:05:59.461155+00:00",
+  "updated_utc": "2026-10-27T07:48:21.159590+00:00",
+  "dataset_sha256": "9252a6584144ebbd64d188623d4c32f75801ff1d52dc6b279d87366c25115902",
+  "endpoint": "https://jevmodel.app/api/v1/systemone",
+  "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+  "metric_definition": "文档级：首个 gold 的 MRR、任意 gold 的 Hit@3、全部 gold 的 Evidence Success@k；不可回答不计入均值。",
+  "summary": {
+    "answerable_denominator": 9,
+    "unanswerable_count": 1,
+    "rrf": {
+      "mrr": 0.6666666666666666,
+      "hit_at_3": 0.7777777777777778,
+      "evidence_success_at_3": 0.6666666666666666,
+      "evidence_success_at_5": 0.6666666666666666
+    },
+    "jev": {
+      "mrr": 0.7222222222222222,
+      "hit_at_3": 0.7777777777777778,
+      "evidence_success_at_3": 0.6666666666666666,
+      "evidence_success_at_5": 0.6666666666666666
+    },
+    "comparison_complete": true,
+    "requests_attempted": 53,
+    "requests_succeeded": 50,
+    "requests_failed": 3,
+    "latency_ms": {
+      "median_all_attempts": 4738.145,
+      "max_all_attempts": 7892.574
+    },
+    "successful_reported_input_tokens": 26552,
+    "all_successes_have_usage": true,
+    "actual_cost_usd": null,
+    "cost_note": "本站费用和免费配额需在账户核对；token 使用不等于美元账单，未知金额不按官方直连价格计算。"
+  },
+  "typical_cases": {
+    "top3_evidence_improved": [],
+    "top3_evidence_degraded": [],
+    "gold_above_hard_negative": [
+      "S02",
+      "S04",
+      "S08",
+      "S10"
+    ],
+    "hard_negative_above_gold": [
+      "S03"
+    ],
+    "note": "仅按预标注 ID 的相对顺序筛选供人工复核；非模型正确率。完整详情见 cases。"
+  },
+  "cases": [
+    {
+      "id": "S01",
+      "origin": "R1",
+      "tags": [
+        "synthetic",
+        "context_engineering",
+        "multi_fact"
+      ],
+      "query": "面对很长的模拟运行记录，怎样先缩小阅读范围，再查看可疑步骤的细节？",
+      "gold": [
+        "d01",
+        "d02"
+      ],
+      "rrf_ranking": [
+        "n03",
+        "d11",
+        "d17",
+        "n04",
+        "d03"
+      ],
+      "candidates": [
+        {
+          "id": "n03",
+          "text": "合成性能提案：准备引入缓存提升查询速度，目前尚未运行实验，也没有测量结果。"
+        },
+        {
+          "id": "d11",
+          "text": "虚构实验系统甲：为每次工具调用记录开始时间、结束时间及运行状态，以便检查调用链。"
+        },
+        {
+          "id": "d17",
+          "text": "合成练习记录：上一次模拟面谈之后，虚构角色决定持续复习数据库索引的使用边界。"
+        },
+        {
+          "id": "n04",
+          "text": "合成通讯录：虚构角色小林有一条测试记录，邮箱字段为空；它不包含其他角色的联系信息。"
+        },
+        {
+          "id": "d03",
+          "text": "合成费用排查：规则程序提取每段文字的长度和重复次数等可计算事实；语言模型判断重复内容是否具有语义必要性。"
+        }
+      ],
+      "rrf_metrics": {
+        "mrr": 0.0,
+        "hit_at_3": 0,
+        "evidence_success_at_3": 0,
+        "evidence_success_at_5": 0
+      },
+      "calls": [
+        {
+          "status": "failed",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "error": "HTTPError",
+          "http_status": 403,
+          "latency_ms": 889.5,
+          "doc_id": "n03"
+        },
+        {
+          "status": "failed",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "error": "HTTPError",
+          "http_status": 403,
+          "latency_ms": 714.722,
+          "doc_id": "n03"
+        },
+        {
+          "status": "failed",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "error": "HTTPError",
+          "http_status": 403,
+          "error_format": "non_json_or_unreadable",
+          "latency_ms": 1333.152,
+          "doc_id": "n03"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.04,
+          "response": {
+            "request_id": "1c3a16e6-0266-48ee-8cb9-198dccf295e1",
+            "answers": {
+              "relevance": {
+                "confidence": 0.94,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.96,
+                  "1": 0.04,
+                  "2": 0
+                },
+                "score": 0.04,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.226e-05,
+              "inputTokens": 530,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 99470,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 18,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 530,
+          "latency_ms": 7155.889,
+          "doc_id": "n03"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.93,
+          "response": {
+            "request_id": "d811a4f3-9d62-4a54-a2cb-6aa718d81ffa",
+            "answers": {
+              "relevance": {
+                "confidence": 0.41,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.23,
+                  "1": 0.61,
+                  "2": 0.16
+                },
+                "score": 0.93,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2386e-05,
+              "inputTokens": 533,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 98937,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 19,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 533,
+          "latency_ms": 7892.574,
+          "doc_id": "d11"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.03,
+          "response": {
+            "request_id": "6535976e-2d09-4b15-9ffb-342fa6b80115",
+            "answers": {
+              "relevance": {
+                "confidence": 0.97,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.98,
+                  "1": 0.02,
+                  "2": 0
+                },
+                "score": 0.03,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2302e-05,
+              "inputTokens": 531,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 98406,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 20,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 531,
+          "latency_ms": 5222.474,
+          "doc_id": "d17"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.05,
+          "response": {
+            "request_id": "a960eb94-9af6-4a67-915f-e6ddf7da9a78",
+            "answers": {
+              "relevance": {
+                "confidence": 0.91,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.95,
+                  "1": 0.04,
+                  "2": 0.01
+                },
+                "score": 0.05,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2428e-05,
+              "inputTokens": 534,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 97872,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 21,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 534,
+          "latency_ms": 5032.809,
+          "doc_id": "n04"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1,
+          "response": {
+            "request_id": "f6a8d225-7c6b-4b2c-b5f4-a99db441b2f1",
+            "answers": {
+              "relevance": {
+                "confidence": 0.4,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.2,
+                  "1": 0.6,
+                  "2": 0.2
+                },
+                "score": 1,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.289e-05,
+              "inputTokens": 545,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 97327,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 22,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 545,
+          "latency_ms": 4836.383,
+          "doc_id": "d03"
+        }
+      ],
+      "jev_ranking": [
+        "d03",
+        "d11",
+        "n04",
+        "n03",
+        "d17"
+      ],
+      "jev_metrics": {
+        "mrr": 0.0,
+        "hit_at_3": 0,
+        "evidence_success_at_3": 0,
+        "evidence_success_at_5": 0
+      }
+    },
+    {
+      "id": "S02",
+      "origin": "R2",
+      "tags": [
+        "synthetic",
+        "agent_diagnosis",
+        "multi_fact"
+      ],
+      "query": "在模拟的文本费用排查中，规则程序和语言模型分别负责什么？金额最终由谁计算？",
+      "gold": [
+        "d03",
+        "d04"
+      ],
+      "rrf_ranking": [
+        "d03",
+        "d04",
+        "d06",
+        "d17",
+        "n05"
+      ],
+      "candidates": [
+        {
+          "id": "d03",
+          "text": "合成费用排查：规则程序提取每段文字的长度和重复次数等可计算事实；语言模型判断重复内容是否具有语义必要性。"
+        },
+        {
+          "id": "d04",
+          "text": "合成费用排查：程序根据经确认的可删除字数和固定单价计算节省金额，模型不直接填写金额。"
+        },
+        {
+          "id": "d06",
+          "text": "合成限流实验：多个工作进程使用同一个共享计数器限制请求总数，遇到限流响应后等待再尝试。"
+        },
+        {
+          "id": "d17",
+          "text": "合成练习记录：上一次模拟面谈之后，虚构角色决定持续复习数据库索引的使用边界。"
+        },
+        {
+          "id": "n05",
+          "text": "合成练习记录：某次与上一次模拟面谈无关的练习讨论了排序算法，并非面谈后确定的复习计划。"
+        }
+      ],
+      "rrf_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      },
+      "calls": [
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.8,
+          "response": {
+            "request_id": "f62103c8-c6cb-4e22-8429-681240a4de99",
+            "answers": {
+              "relevance": {
+                "confidence": 0.71,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.02,
+                  "1": 0.15,
+                  "2": 0.83
+                },
+                "score": 1.8,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.3058e-05,
+              "inputTokens": 549,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 96778,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 23,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 549,
+          "latency_ms": 7739.962,
+          "doc_id": "d03"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.92,
+          "response": {
+            "request_id": "c5eb2495-ad12-45c1-8164-f8e145c33397",
+            "answers": {
+              "relevance": {
+                "confidence": 0.9,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.01,
+                  "1": 0.05,
+                  "2": 0.94
+                },
+                "score": 1.92,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2638e-05,
+              "inputTokens": 539,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 96239,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 24,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 539,
+          "latency_ms": 5347.823,
+          "doc_id": "d04"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.01,
+          "response": {
+            "request_id": "dedfb695-8ef4-4076-a792-62b33a3b04a6",
+            "answers": {
+              "relevance": {
+                "confidence": 0.98,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.99,
+                  "1": 0.01,
+                  "2": 0
+                },
+                "score": 0.01,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.268e-05,
+              "inputTokens": 540,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 95699,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 25,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 540,
+          "latency_ms": 4711.521,
+          "doc_id": "d06"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.01,
+          "response": {
+            "request_id": "f4fa2989-0084-4843-b33d-3fce28d812e4",
+            "answers": {
+              "relevance": {
+                "confidence": 1,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 1,
+                  "1": 0,
+                  "2": 0
+                },
+                "score": 0.01,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.247e-05,
+              "inputTokens": 535,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 95164,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 26,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 535,
+          "latency_ms": 6263.454,
+          "doc_id": "d17"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0,
+          "response": {
+            "request_id": "618d1e91-49fc-494e-88a4-a09db78d9338",
+            "answers": {
+              "relevance": {
+                "confidence": 1,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 1,
+                  "1": 0,
+                  "2": 0
+                },
+                "score": 0,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.268e-05,
+              "inputTokens": 540,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 94624,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 27,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 540,
+          "latency_ms": 6067.511,
+          "doc_id": "n05"
+        }
+      ],
+      "jev_ranking": [
+        "d04",
+        "d03",
+        "d06",
+        "d17",
+        "n05"
+      ],
+      "jev_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      }
+    },
+    {
+      "id": "S03",
+      "origin": "R3",
+      "tags": [
+        "synthetic",
+        "retry",
+        "hard_negative"
+      ],
+      "query": "假设一个调用会遇到限流，怎样避免重试使实际请求数超过共享配额？",
+      "gold": [
+        "d05",
+        "d06"
+      ],
+      "rrf_ranking": [
+        "n01",
+        "d06",
+        "d11",
+        "d01",
+        "n07"
+      ],
+      "candidates": [
+        {
+          "id": "n01",
+          "text": "合成限流方案草案：只在业务任务开始时申请一次配额，后续重试不再计数。该草案无法约束实际请求总数。"
+        },
+        {
+          "id": "d06",
+          "text": "合成限流实验：多个工作进程使用同一个共享计数器限制请求总数，遇到限流响应后等待再尝试。"
+        },
+        {
+          "id": "d11",
+          "text": "虚构实验系统甲：为每次工具调用记录开始时间、结束时间及运行状态，以便检查调用链。"
+        },
+        {
+          "id": "d01",
+          "text": "合成长记录实验：先展示按阶段整理的简短索引和每阶段调用次数，避免一开始读取所有步骤的全文。"
+        },
+        {
+          "id": "n07",
+          "text": "合成数据集说明：所有内容均为虚构，测量数字仅用于实验案例，不描述实际系统或个人。"
+        }
+      ],
+      "rrf_metrics": {
+        "mrr": 0.5,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 0,
+        "evidence_success_at_5": 0
+      },
+      "calls": [
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.95,
+          "response": {
+            "request_id": "b980936e-7e7d-4389-9c98-d78a989ce63b",
+            "answers": {
+              "relevance": {
+                "confidence": 0.55,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.18,
+                  "1": 0.7,
+                  "2": 0.12
+                },
+                "score": 0.95,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2638e-05,
+              "inputTokens": 539,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 94085,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 28,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 539,
+          "latency_ms": 6122.608,
+          "doc_id": "n01"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.77,
+          "response": {
+            "request_id": "86b4dac8-6f3f-43e3-9152-385f5eea0650",
+            "answers": {
+              "relevance": {
+                "confidence": 0.56,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.26,
+                  "1": 0.71,
+                  "2": 0.03
+                },
+                "score": 0.77,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2428e-05,
+              "inputTokens": 534,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 93551,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 29,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 534,
+          "latency_ms": 5911.277,
+          "doc_id": "d06"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.37,
+          "response": {
+            "request_id": "1f49d25e-a360-4760-8ca3-3f033e988d74",
+            "answers": {
+              "relevance": {
+                "confidence": 0.46,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.64,
+                  "1": 0.36,
+                  "2": 0
+                },
+                "score": 0.37,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2302e-05,
+              "inputTokens": 531,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 93020,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 30,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 531,
+          "latency_ms": 7072.351,
+          "doc_id": "d11"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.08,
+          "response": {
+            "request_id": "53416b86-c5d1-4b14-aee4-87fb2146074b",
+            "answers": {
+              "relevance": {
+                "confidence": 0.9,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.93,
+                  "1": 0.07,
+                  "2": 0
+                },
+                "score": 0.08,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2512e-05,
+              "inputTokens": 536,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 92484,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 31,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 536,
+          "latency_ms": 6925.685,
+          "doc_id": "d01"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.01,
+          "response": {
+            "request_id": "958bd164-fd7c-42d4-816b-0e74a00d95b8",
+            "answers": {
+              "relevance": {
+                "confidence": 0.98,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.99,
+                  "1": 0.01,
+                  "2": 0
+                },
+                "score": 0.01,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2302e-05,
+              "inputTokens": 531,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 91953,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 32,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 531,
+          "latency_ms": 4563.849,
+          "doc_id": "n07"
+        }
+      ],
+      "jev_ranking": [
+        "n01",
+        "d06",
+        "d11",
+        "d01",
+        "n07"
+      ],
+      "jev_metrics": {
+        "mrr": 0.5,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 0,
+        "evidence_success_at_5": 0
+      }
+    },
+    {
+      "id": "S04",
+      "origin": "R4",
+      "tags": [
+        "synthetic",
+        "concurrency",
+        "hard_negative"
+      ],
+      "query": "虚构任务处理系统怎样分别保证只有一个执行者和重复通知只处理一次？",
+      "gold": [
+        "d07",
+        "d08"
+      ],
+      "rrf_ranking": [
+        "n02",
+        "d08",
+        "d07",
+        "n01",
+        "d10"
+      ],
+      "candidates": [
+        {
+          "id": "n02",
+          "text": "合成通知设计草案：只靠任务编号区分通知，不记录事件编号；这不能保证重复通知只处理一次。"
+        },
+        {
+          "id": "d08",
+          "text": "合成任务实验：每条通知带一个事件编号，处理表对该编号设置唯一约束，重复通知不会再次触发处理。"
+        },
+        {
+          "id": "d07",
+          "text": "合成任务实验：工作者通过原子状态变更争取任务，只有成功把待处理状态改为运行中者能执行任务。"
+        },
+        {
+          "id": "n01",
+          "text": "合成限流方案草案：只在业务任务开始时申请一次配额，后续重试不再计数。该草案无法约束实际请求总数。"
+        },
+        {
+          "id": "d10",
+          "text": "合成访问统计：在每日访问者汇总表中保留首次访问日期，用这个字段按日期统计新增访问者。"
+        }
+      ],
+      "rrf_metrics": {
+        "mrr": 0.5,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      },
+      "calls": [
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.03,
+          "response": {
+            "request_id": "98a986bf-8580-4536-b925-a6f742dd0093",
+            "answers": {
+              "relevance": {
+                "confidence": 0.56,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.13,
+                  "1": 0.71,
+                  "2": 0.16
+                },
+                "score": 1.03,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.247e-05,
+              "inputTokens": 535,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 91418,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 33,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 535,
+          "latency_ms": 5083.443,
+          "doc_id": "n02"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.76,
+          "response": {
+            "request_id": "5ba1867b-7969-4886-a791-7d5d2f424de7",
+            "answers": {
+              "relevance": {
+                "confidence": 0.62,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.04,
+                  "1": 0.17,
+                  "2": 0.79
+                },
+                "score": 1.76,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2596e-05,
+              "inputTokens": 538,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 90880,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 34,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 538,
+          "latency_ms": 4484.428,
+          "doc_id": "d08"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.81,
+          "response": {
+            "request_id": "fbc8455a-10fd-4aa7-82eb-b40e83f2544c",
+            "answers": {
+              "relevance": {
+                "confidence": 0.73,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.02,
+                  "1": 0.14,
+                  "2": 0.84
+                },
+                "score": 1.81,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2554e-05,
+              "inputTokens": 537,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 90343,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 35,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 537,
+          "latency_ms": 4738.145,
+          "doc_id": "d07"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.64,
+          "response": {
+            "request_id": "023e25da-2a93-476c-b11a-079c6727589b",
+            "answers": {
+              "relevance": {
+                "confidence": 0.4,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.38,
+                  "1": 0.6,
+                  "2": 0.02
+                },
+                "score": 0.64,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.268e-05,
+              "inputTokens": 540,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 89803,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 36,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 540,
+          "latency_ms": 4503.966,
+          "doc_id": "n01"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.34,
+          "response": {
+            "request_id": "0c705132-2091-4b04-ac89-2c6f1f21a684",
+            "answers": {
+              "relevance": {
+                "confidence": 0.49,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.73,
+                  "1": 0.2,
+                  "2": 0.07
+                },
+                "score": 0.34,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2428e-05,
+              "inputTokens": 534,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 89269,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 37,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 534,
+          "latency_ms": 6333.266,
+          "doc_id": "d10"
+        }
+      ],
+      "jev_ranking": [
+        "d07",
+        "d08",
+        "n02",
+        "n01",
+        "d10"
+      ],
+      "jev_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      }
+    },
+    {
+      "id": "S05",
+      "origin": "R5",
+      "tags": [
+        "synthetic",
+        "query_optimization"
+      ],
+      "query": "模拟访问统计怎样减少重复扫描事件明细，同时支持按日期查看新增访问者？",
+      "gold": [
+        "d09",
+        "d10"
+      ],
+      "rrf_ranking": [
+        "d10",
+        "d09",
+        "d17",
+        "d18",
+        "d03"
+      ],
+      "candidates": [
+        {
+          "id": "d10",
+          "text": "合成访问统计：在每日访问者汇总表中保留首次访问日期，用这个字段按日期统计新增访问者。"
+        },
+        {
+          "id": "d09",
+          "text": "合成访问统计：每天将事件明细汇总为每个访问者每天一行，避免查询时反复扫描全部原始事件。"
+        },
+        {
+          "id": "d17",
+          "text": "合成练习记录：上一次模拟面谈之后，虚构角色决定持续复习数据库索引的使用边界。"
+        },
+        {
+          "id": "d18",
+          "text": "合成练习记录：同一次模拟面谈之后，虚构角色还计划练习说明系统故障恢复的步骤。"
+        },
+        {
+          "id": "d03",
+          "text": "合成费用排查：规则程序提取每段文字的长度和重复次数等可计算事实；语言模型判断重复内容是否具有语义必要性。"
+        }
+      ],
+      "rrf_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      },
+      "calls": [
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.21,
+          "response": {
+            "request_id": "7bdec4fa-1ff8-4e06-aafc-f2b0d2e17f88",
+            "answers": {
+              "relevance": {
+                "confidence": 0.27,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.14,
+                  "1": 0.51,
+                  "2": 0.35
+                },
+                "score": 1.21,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2512e-05,
+              "inputTokens": 536,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 88733,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 38,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 536,
+          "latency_ms": 4569.868,
+          "doc_id": "d10"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.19,
+          "response": {
+            "request_id": "171e2163-156c-44da-aba3-13bd112fe6d2",
+            "answers": {
+              "relevance": {
+                "confidence": 0.32,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.13,
+                  "1": 0.55,
+                  "2": 0.32
+                },
+                "score": 1.19,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2554e-05,
+              "inputTokens": 537,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 88196,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 39,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 537,
+          "latency_ms": 4423.416,
+          "doc_id": "d09"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.01,
+          "response": {
+            "request_id": "af13bd1d-ca04-44eb-8b7d-3ab1c61a33a3",
+            "answers": {
+              "relevance": {
+                "confidence": 0.98,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.99,
+                  "1": 0.01,
+                  "2": 0
+                },
+                "score": 0.01,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2344e-05,
+              "inputTokens": 532,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 87664,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 40,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 532,
+          "latency_ms": 4461.422,
+          "doc_id": "d17"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0,
+          "response": {
+            "request_id": "34b6dacc-7583-4c27-80b0-b4d774357ab2",
+            "answers": {
+              "relevance": {
+                "confidence": 1,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 1,
+                  "1": 0,
+                  "2": 0
+                },
+                "score": 0,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2344e-05,
+              "inputTokens": 532,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 87132,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 41,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 532,
+          "latency_ms": 4849.626,
+          "doc_id": "d18"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.25,
+          "response": {
+            "request_id": "8023b2b0-1665-456f-a1c4-f244a84dee13",
+            "answers": {
+              "relevance": {
+                "confidence": 0.62,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.77,
+                  "1": 0.21,
+                  "2": 0.02
+                },
+                "score": 0.25,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2932e-05,
+              "inputTokens": 546,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 86586,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 42,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 546,
+          "latency_ms": 4531.164,
+          "doc_id": "d03"
+        }
+      ],
+      "jev_ranking": [
+        "d10",
+        "d09",
+        "d03",
+        "d17",
+        "d18"
+      ],
+      "jev_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      }
+    },
+    {
+      "id": "S06",
+      "origin": "R6",
+      "tags": [
+        "synthetic",
+        "cross_document",
+        "observability"
+      ],
+      "query": "两个虚构实验系统分别用了什么办法观察工具调用和检验诊断结论？",
+      "gold": [
+        "d11",
+        "d12"
+      ],
+      "rrf_ranking": [
+        "d12",
+        "d11",
+        "d01",
+        "d05",
+        "d07"
+      ],
+      "candidates": [
+        {
+          "id": "d12",
+          "text": "虚构实验系统乙：用人工标注的模拟样例核对诊断结论，统计正确和错误判断。"
+        },
+        {
+          "id": "d11",
+          "text": "虚构实验系统甲：为每次工具调用记录开始时间、结束时间及运行状态，以便检查调用链。"
+        },
+        {
+          "id": "d01",
+          "text": "合成长记录实验：先展示按阶段整理的简短索引和每阶段调用次数，避免一开始读取所有步骤的全文。"
+        },
+        {
+          "id": "d05",
+          "text": "合成限流实验：每一次网络请求发出之前都要取得一次配额，重试请求也必须重新取得配额。"
+        },
+        {
+          "id": "d07",
+          "text": "合成任务实验：工作者通过原子状态变更争取任务，只有成功把待处理状态改为运行中者能执行任务。"
+        }
+      ],
+      "rrf_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      },
+      "calls": [
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.93,
+          "response": {
+            "request_id": "1fd71437-c7ec-427e-80b3-0a987c0ca818",
+            "answers": {
+              "relevance": {
+                "confidence": 0.91,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.01,
+                  "1": 0.04,
+                  "2": 0.95
+                },
+                "score": 1.93,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.205e-05,
+              "inputTokens": 525,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 86061,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 43,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 525,
+          "latency_ms": 5805.615,
+          "doc_id": "d12"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.85,
+          "response": {
+            "request_id": "d41a3930-1e5a-42cf-b967-8a42961987a7",
+            "answers": {
+              "relevance": {
+                "confidence": 0.79,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.02,
+                  "1": 0.1,
+                  "2": 0.88
+                },
+                "score": 1.85,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.226e-05,
+              "inputTokens": 530,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 85531,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 44,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 530,
+          "latency_ms": 5839.08,
+          "doc_id": "d11"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.41,
+          "response": {
+            "request_id": "422c33e0-5a8f-4992-aff1-8b40c3a87275",
+            "answers": {
+              "relevance": {
+                "confidence": 0.11,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.13,
+                  "1": 0.33,
+                  "2": 0.54
+                },
+                "score": 1.41,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.247e-05,
+              "inputTokens": 535,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 84996,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 45,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 535,
+          "latency_ms": 4382.633,
+          "doc_id": "d01"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.12,
+          "response": {
+            "request_id": "eb9e572c-f48b-43d2-a7e6-2ad2c5ff3fe1",
+            "answers": {
+              "relevance": {
+                "confidence": 0.82,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.91,
+                  "1": 0.06,
+                  "2": 0.03
+                },
+                "score": 0.12,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2302e-05,
+              "inputTokens": 531,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 84465,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 46,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 531,
+          "latency_ms": 5021.007,
+          "doc_id": "d05"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.65,
+          "response": {
+            "request_id": "2229df02-50ac-49e4-b19f-c65e2498fa26",
+            "answers": {
+              "relevance": {
+                "confidence": 0.02,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.54,
+                  "1": 0.27,
+                  "2": 0.19
+                },
+                "score": 0.65,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.247e-05,
+              "inputTokens": 535,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 83930,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 47,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 535,
+          "latency_ms": 4614.229,
+          "doc_id": "d07"
+        }
+      ],
+      "jev_ranking": [
+        "d12",
+        "d11",
+        "d01",
+        "d07",
+        "d05"
+      ],
+      "jev_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      }
+    },
+    {
+      "id": "S07",
+      "origin": "R7",
+      "tags": [
+        "synthetic",
+        "measured_performance",
+        "hard_negative"
+      ],
+      "query": "虚构实验中，哪些性能改动有前后测量数据，分别是什么结果？",
+      "gold": [
+        "d13",
+        "d14"
+      ],
+      "rrf_ranking": [
+        "d12",
+        "d11",
+        "d17",
+        "n03",
+        "d07"
+      ],
+      "candidates": [
+        {
+          "id": "d12",
+          "text": "虚构实验系统乙：用人工标注的模拟样例核对诊断结论，统计正确和错误判断。"
+        },
+        {
+          "id": "d11",
+          "text": "虚构实验系统甲：为每次工具调用记录开始时间、结束时间及运行状态，以便检查调用链。"
+        },
+        {
+          "id": "d17",
+          "text": "合成练习记录：上一次模拟面谈之后，虚构角色决定持续复习数据库索引的使用边界。"
+        },
+        {
+          "id": "n03",
+          "text": "合成性能提案：准备引入缓存提升查询速度，目前尚未运行实验，也没有测量结果。"
+        },
+        {
+          "id": "d07",
+          "text": "合成任务实验：工作者通过原子状态变更争取任务，只有成功把待处理状态改为运行中者能执行任务。"
+        }
+      ],
+      "rrf_metrics": {
+        "mrr": 0.0,
+        "hit_at_3": 0,
+        "evidence_success_at_3": 0,
+        "evidence_success_at_5": 0
+      },
+      "calls": [
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.51,
+          "response": {
+            "request_id": "d978052c-365b-4e0e-a1ba-67ca26cefcdc",
+            "answers": {
+              "relevance": {
+                "confidence": 0.25,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.51,
+                  "1": 0.48,
+                  "2": 0.01
+                },
+                "score": 0.51,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.1966e-05,
+              "inputTokens": 523,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 83407,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 48,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 523,
+          "latency_ms": 4437.314,
+          "doc_id": "d12"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.38,
+          "response": {
+            "request_id": "9c609e2d-d7c5-4a5b-9b51-2e95726d8e11",
+            "answers": {
+              "relevance": {
+                "confidence": 0.42,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.63,
+                  "1": 0.35,
+                  "2": 0.02
+                },
+                "score": 0.38,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2176e-05,
+              "inputTokens": 528,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 82879,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 49,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 528,
+          "latency_ms": 4620.594,
+          "doc_id": "d11"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.06,
+          "response": {
+            "request_id": "66a5be32-6dae-4e5c-bdf5-0d81bbad7632",
+            "answers": {
+              "relevance": {
+                "confidence": 0.91,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.94,
+                  "1": 0.06,
+                  "2": 0
+                },
+                "score": 0.06,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2092e-05,
+              "inputTokens": 526,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 82353,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 50,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 526,
+          "latency_ms": 5949.578,
+          "doc_id": "d17"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.12,
+          "response": {
+            "request_id": "3924a430-db43-4e59-a971-306b3a6029f0",
+            "answers": {
+              "relevance": {
+                "confidence": 0.25,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.19,
+                  "1": 0.5,
+                  "2": 0.31
+                },
+                "score": 1.12,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.205e-05,
+              "inputTokens": 525,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 81828,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 51,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 525,
+          "latency_ms": 4887.496,
+          "doc_id": "n03"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.3,
+          "response": {
+            "request_id": "37091841-887f-4482-81f7-0c0e5cb01e2c",
+            "answers": {
+              "relevance": {
+                "confidence": 0.53,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.7,
+                  "1": 0.29,
+                  "2": 0.01
+                },
+                "score": 0.3,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2386e-05,
+              "inputTokens": 533,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 81295,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 52,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 533,
+          "latency_ms": 4694.851,
+          "doc_id": "d07"
+        }
+      ],
+      "jev_ranking": [
+        "n03",
+        "d12",
+        "d11",
+        "d07",
+        "d17"
+      ],
+      "jev_metrics": {
+        "mrr": 0.0,
+        "hit_at_3": 0,
+        "evidence_success_at_3": 0,
+        "evidence_success_at_5": 0
+      }
+    },
+    {
+      "id": "S08",
+      "origin": "R8",
+      "tags": [
+        "synthetic",
+        "profile",
+        "multi_fact"
+      ],
+      "query": "合成档案中的虚构角色目前学习什么、希望从事哪类工作？",
+      "gold": [
+        "d15",
+        "d16"
+      ],
+      "rrf_ranking": [
+        "d16",
+        "d15",
+        "d17",
+        "n04",
+        "d18"
+      ],
+      "candidates": [
+        {
+          "id": "d16",
+          "text": "合成档案：该虚构角色希望从事软件测试与后端开发相结合的工作。"
+        },
+        {
+          "id": "d15",
+          "text": "合成档案：虚构角色正在学习计算机网络与数据库基础。"
+        },
+        {
+          "id": "d17",
+          "text": "合成练习记录：上一次模拟面谈之后，虚构角色决定持续复习数据库索引的使用边界。"
+        },
+        {
+          "id": "n04",
+          "text": "合成通讯录：虚构角色小林有一条测试记录，邮箱字段为空；它不包含其他角色的联系信息。"
+        },
+        {
+          "id": "d18",
+          "text": "合成练习记录：同一次模拟面谈之后，虚构角色还计划练习说明系统故障恢复的步骤。"
+        }
+      ],
+      "rrf_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      },
+      "calls": [
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.96,
+          "response": {
+            "request_id": "3fe7e9a3-051d-4345-af04-5316bfa50ab0",
+            "answers": {
+              "relevance": {
+                "confidence": 0.94,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.01,
+                  "1": 0.02,
+                  "2": 0.97
+                },
+                "score": 1.96,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.1672e-05,
+              "inputTokens": 516,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 80779,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 53,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 516,
+          "latency_ms": 4512.903,
+          "doc_id": "d16"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.99,
+          "response": {
+            "request_id": "055d3dd4-3906-4cb3-a9fc-1c84c08d289b",
+            "answers": {
+              "relevance": {
+                "confidence": 0.98,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0,
+                  "1": 0.01,
+                  "2": 0.99
+                },
+                "score": 1.99,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.1462e-05,
+              "inputTokens": 511,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 80268,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 54,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 511,
+          "latency_ms": 5102.759,
+          "doc_id": "d15"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.72,
+          "response": {
+            "request_id": "42a8119e-13ea-4be3-9f26-47a87bb64f50",
+            "answers": {
+              "relevance": {
+                "confidence": 0.59,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.05,
+                  "1": 0.17,
+                  "2": 0.78
+                },
+                "score": 1.72,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2008e-05,
+              "inputTokens": 524,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 79744,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 55,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 524,
+          "latency_ms": 4431.216,
+          "doc_id": "d17"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.06,
+          "response": {
+            "request_id": "b8ed14f0-172e-45e9-a093-95baa4ef1f9f",
+            "answers": {
+              "relevance": {
+                "confidence": 0.91,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.94,
+                  "1": 0.06,
+                  "2": 0
+                },
+                "score": 0.06,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2134e-05,
+              "inputTokens": 527,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 79217,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 56,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 527,
+          "latency_ms": 5373.428,
+          "doc_id": "n04"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.71,
+          "response": {
+            "request_id": "fd97ed85-4706-4f15-878a-40be8c01c786",
+            "answers": {
+              "relevance": {
+                "confidence": 0.19,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.42,
+                  "1": 0.46,
+                  "2": 0.12
+                },
+                "score": 0.71,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2008e-05,
+              "inputTokens": 524,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 78693,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 57,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 524,
+          "latency_ms": 4879.903,
+          "doc_id": "d18"
+        }
+      ],
+      "jev_ranking": [
+        "d15",
+        "d16",
+        "d17",
+        "d18",
+        "n04"
+      ],
+      "jev_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      }
+    },
+    {
+      "id": "S09",
+      "origin": "R9",
+      "tags": [
+        "synthetic",
+        "unanswerable",
+        "hard_negative"
+      ],
+      "query": "虚构角色小岚的电子邮箱地址是什么？",
+      "gold": [],
+      "rrf_ranking": [
+        "n04",
+        "d17",
+        "d18",
+        "d15",
+        "d12"
+      ],
+      "candidates": [
+        {
+          "id": "n04",
+          "text": "合成通讯录：虚构角色小林有一条测试记录，邮箱字段为空；它不包含其他角色的联系信息。"
+        },
+        {
+          "id": "d17",
+          "text": "合成练习记录：上一次模拟面谈之后，虚构角色决定持续复习数据库索引的使用边界。"
+        },
+        {
+          "id": "d18",
+          "text": "合成练习记录：同一次模拟面谈之后，虚构角色还计划练习说明系统故障恢复的步骤。"
+        },
+        {
+          "id": "d15",
+          "text": "合成档案：虚构角色正在学习计算机网络与数据库基础。"
+        },
+        {
+          "id": "d12",
+          "text": "虚构实验系统乙：用人工标注的模拟样例核对诊断结论，统计正确和错误判断。"
+        }
+      ],
+      "rrf_metrics": null,
+      "calls": [
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.16,
+          "response": {
+            "request_id": "2b8b79e4-3d20-4b0f-9947-868c136462bd",
+            "answers": {
+              "relevance": {
+                "confidence": 0.76,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.84,
+                  "1": 0.16,
+                  "2": 0
+                },
+                "score": 0.16,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.1798e-05,
+              "inputTokens": 519,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 78174,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 58,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 519,
+          "latency_ms": 4441.994,
+          "doc_id": "n04"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.02,
+          "response": {
+            "request_id": "229d92cc-55e6-44b7-bcc4-7a639c254a84",
+            "answers": {
+              "relevance": {
+                "confidence": 0.98,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.99,
+                  "1": 0.01,
+                  "2": 0
+                },
+                "score": 0.02,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.1672e-05,
+              "inputTokens": 516,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 77658,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 59,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 516,
+          "latency_ms": 4374.252,
+          "doc_id": "d17"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.04,
+          "response": {
+            "request_id": "4a896cc7-14dc-4037-8c9a-2e2798ab1c7d",
+            "answers": {
+              "relevance": {
+                "confidence": 0.95,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.97,
+                  "1": 0.03,
+                  "2": 0
+                },
+                "score": 0.04,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.1672e-05,
+              "inputTokens": 516,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 77142,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 60,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 516,
+          "latency_ms": 4502.566,
+          "doc_id": "d18"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.28,
+          "response": {
+            "request_id": "24c7e03f-91ca-4df9-80a4-f6a2a2612c73",
+            "answers": {
+              "relevance": {
+                "confidence": 0.59,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.73,
+                  "1": 0.27,
+                  "2": 0
+                },
+                "score": 0.28,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.1126e-05,
+              "inputTokens": 503,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 76639,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 61,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 503,
+          "latency_ms": 6201.055,
+          "doc_id": "d15"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.01,
+          "response": {
+            "request_id": "c29943f4-96e2-48f6-b2a6-a176325d9e65",
+            "answers": {
+              "relevance": {
+                "confidence": 1,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 1,
+                  "1": 0,
+                  "2": 0
+                },
+                "score": 0.01,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.1546e-05,
+              "inputTokens": 513,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 76126,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 62,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 513,
+          "latency_ms": 4648.02,
+          "doc_id": "d12"
+        }
+      ],
+      "jev_ranking": [
+        "d15",
+        "n04",
+        "d18",
+        "d17",
+        "d12"
+      ],
+      "jev_metrics": null
+    },
+    {
+      "id": "S10",
+      "origin": "M4",
+      "tags": [
+        "synthetic",
+        "memory_recall",
+        "event_time"
+      ],
+      "query": "在模拟练习记录里，上一次模拟面谈后确定需要继续复习的两项内容是什么？",
+      "gold": [
+        "d17",
+        "d18"
+      ],
+      "rrf_ranking": [
+        "d17",
+        "n05",
+        "d18",
+        "d03",
+        "n03"
+      ],
+      "candidates": [
+        {
+          "id": "d17",
+          "text": "合成练习记录：上一次模拟面谈之后，虚构角色决定持续复习数据库索引的使用边界。"
+        },
+        {
+          "id": "n05",
+          "text": "合成练习记录：某次与上一次模拟面谈无关的练习讨论了排序算法，并非面谈后确定的复习计划。"
+        },
+        {
+          "id": "d18",
+          "text": "合成练习记录：同一次模拟面谈之后，虚构角色还计划练习说明系统故障恢复的步骤。"
+        },
+        {
+          "id": "d03",
+          "text": "合成费用排查：规则程序提取每段文字的长度和重复次数等可计算事实；语言模型判断重复内容是否具有语义必要性。"
+        },
+        {
+          "id": "n03",
+          "text": "合成性能提案：准备引入缓存提升查询速度，目前尚未运行实验，也没有测量结果。"
+        }
+      ],
+      "rrf_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      },
+      "calls": [
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.48,
+          "response": {
+            "request_id": "8676dbb4-cfb3-4241-8af4-47ff729f790c",
+            "answers": {
+              "relevance": {
+                "confidence": 0.23,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.09,
+                  "1": 0.33,
+                  "2": 0.58
+                },
+                "score": 1.48,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2344e-05,
+              "inputTokens": 532,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 75594,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 63,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 532,
+          "latency_ms": 4418.089,
+          "doc_id": "d17"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.04,
+          "response": {
+            "request_id": "5a691ebd-16c5-493d-ab32-566e96a1e46a",
+            "answers": {
+              "relevance": {
+                "confidence": 0.94,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.96,
+                  "1": 0.04,
+                  "2": 0
+                },
+                "score": 0.04,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2554e-05,
+              "inputTokens": 537,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 75057,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 64,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 537,
+          "latency_ms": 4883.852,
+          "doc_id": "n05"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 1.25,
+          "response": {
+            "request_id": "92697a49-97cb-4a75-8c7a-2ad54d56e55c",
+            "answers": {
+              "relevance": {
+                "confidence": 0.23,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.13,
+                  "1": 0.49,
+                  "2": 0.38
+                },
+                "score": 1.25,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2344e-05,
+              "inputTokens": 532,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 74525,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 65,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 532,
+          "latency_ms": 4304.057,
+          "doc_id": "d18"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.58,
+          "response": {
+            "request_id": "910b2cb8-1d2a-4012-9ac8-b810bbcbfa13",
+            "answers": {
+              "relevance": {
+                "confidence": 0.11,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.57,
+                  "1": 0.27,
+                  "2": 0.16
+                },
+                "score": 0.58,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2932e-05,
+              "inputTokens": 546,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 73979,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 66,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 546,
+          "latency_ms": 4479.768,
+          "doc_id": "d03"
+        },
+        {
+          "status": "ok",
+          "model_claim": "typesafe/jev-1.13 via OpenRouter (JevModel claim; not independently verified)",
+          "http_status": 200,
+          "score": 0.42,
+          "response": {
+            "request_id": "2a7523e1-740c-437a-a582-1f608ab33ff0",
+            "answers": {
+              "relevance": {
+                "confidence": 0.35,
+                "legend": {
+                  "0": "与问题无关，或者只出现相似词语但不能提供回答所需的证据。",
+                  "1": "主题相关但无法直接提供回答所需的事实，或者只提供很弱的线索。",
+                  "2": "直接提供回答问题所需的至少一个事实；即使不能独立回答整个问题也算。"
+                },
+                "probabilities": {
+                  "0": 0.63,
+                  "1": 0.31,
+                  "2": 0.06
+                },
+                "score": 0.42,
+                "type": "score"
+              }
+            },
+            "usage": {
+              "cost": 2.2302e-05,
+              "inputTokens": 531,
+              "outputTokens": 19
+            },
+            "quota": {
+              "tokenBalance": 73448,
+              "hasPurchased": false,
+              "signupGrant": 100000,
+              "globalUsed": 67,
+              "globalLimit": 1000,
+              "dayUtc": "2026-10-27"
+            }
+          },
+          "input_tokens": 531,
+          "latency_ms": 4659.715,
+          "doc_id": "n03"
+        }
+      ],
+      "jev_ranking": [
+        "d17",
+        "d18",
+        "d03",
+        "n03",
+        "n05"
+      ],
+      "jev_metrics": {
+        "mrr": 1.0,
+        "hit_at_3": 1,
+        "evidence_success_at_3": 1,
+        "evidence_success_at_5": 1
+      }
+    }
+  ]
+}
